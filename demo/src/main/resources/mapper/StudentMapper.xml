@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hehe.demo.mapper.StudentMapper">
+
+    <!--    <resultMap id="BaseMap" type="student">-->
+    <!--        <id property="sid" column="Sid" javaType="String"/>-->
+    <!--        <result property="sname" column="Sname" javaType="String"/>-->
+    <!--        <result property="sage" column="Sage" javaType="Date"/>-->
+    <!--        <result property="ssex" column="Ssex" javaType="String"/>-->
+    <!--    </resultMap>-->
+
+    <insert id="insert" parameterType="student">
+        insert into student (Sid,Sname,Sage,Ssex) values (#{sid},#{sname},#{sage},#{ssex});
+
+        <!-- insert into student values (Sid = #{sid},Sname = #{sname},Sage = #{sage},Ssex = #{ssex});  -->
+    </insert>
+
+    <update id="update">
+        update student
+        <set>
+            <if test="sid != '' and sid != null">
+                Sname = #{sname},
+            </if>
+            <if test="sid != '' and sid != null">
+                Sage = #{sage},
+            </if>
+            <if test="sid != '' and sid != null">
+                Ssex = #{ssex}
+            </if>
+        </set>
+        where Sid = #{sid}
+    </update>
+
+    <delete id="delete" parameterType="string">
+        delete from student where Sid = #{sid}
+    </delete>
+
+    <select id="select" resultType="map">
+        select * from student
+    </select>
+
+    <select id="selectNameAndAge" resultType="com.hehe.demo.bean.Student">
+        select * from student
+        where 1=1
+        <if test="name != ''and name != null">
+            and Sname = #{name}
+        </if>
+        <if test="age != null and age != ''">
+            and Sage = #{age}
+        </if>
+    </select>
+
+    <select id="selectList" resultType="com.hehe.demo.bean.Student" parameterType="list">
+        select * from student where Sid in
+        <foreach collection="list" open="(" item="sid" separator="," close=")">
+            #{sid}
+        </foreach>
+    </select>
+</mapper>

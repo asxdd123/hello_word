@@ -1,0 +1,17 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/aaa3?useUnicode=true&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: itheima
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/hello.html
+
+mybatis:
+  mapper-locations: /mapper/*.xml
+  type-aliases-package: com.hehe.demo.bean
