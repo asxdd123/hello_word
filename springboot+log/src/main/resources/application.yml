@@ -1,0 +1,21 @@
+server:
+  port: 7000
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/aaa3?serverTimezone=GMT%2B8&useSSL=true
+    username: root
+    password: itheima
+  thymeleaf:
+    suffix: .html
+    encoding: UTF-8
+
+mybatis:
+  type-aliases-package: com.example.login.bean
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#==================== 日志配合·标准  ============================
+logging:
+  config: classpath:logback-boot.xml
+
