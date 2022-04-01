@@ -100,7 +100,11 @@ public class CheckgroupController {
         return new Result(true, MessageConstant.EDIT_CHECKGROUP_SUCCESS);
     }
 
-
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public Result delete(@RequestParam("id") Integer id) {
         try {
