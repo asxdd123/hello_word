@@ -15,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,14 +78,16 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         }
 
         LambdaQueryWrapper<Student> wrapper = new LambdaQueryWrapper<>();
-        //排序查出最后一个
+        //倒序查询获取第一个对象
         wrapper.orderByDesc(Student::getSid).last("limit 1");
+        //获取该对象的id
         Student stu = mapper.selectOne(wrapper);
         String sid = stu.getSid();
+        //给获取的id+1得到新的id塞给变量student
         int anInt = Integer.parseInt(sid) + 1;
         String Sid = String.valueOf(anInt);
         student.setSid(Sid);
-
+        //添加   实现id自增效果(前提是 数据库没有设置id自增)
         int insert = mapper.insert(student);
         return insert;
     }

@@ -73,9 +73,9 @@ public class TestA {
         student.setSid("20");
         student.setSname("大萨达");
         String age = "2022-01-05";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse(age);
-        student.setSage(date);
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = format.parse(age);
+        student.setSage(age);
         student.setSsex("男");
         /**
          * INSERT INTO student ( Sid, Sname, Sage, Ssex ) VALUES ( ?, ?, ?, ? )
