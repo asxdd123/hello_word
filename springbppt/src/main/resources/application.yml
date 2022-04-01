@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/aaa3?serverTimezone=GMT%2B8&useSSL=true
+    username: root
+    password: itheima
+  thymeleaf:
+    suffix: .html
+
+mybatis:
+  type-aliases-package: com.itheima.springbppt.bean
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+server:
+  port: 9001
+
+fdfs:
+  connect-timeout: 600
+  so-timeout: 1500
+  tracker-list: 192.168.23.129:22122
+  web-server-url: http://192.168.23.129/
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+
+logging:
+  config: classpath:logback-boot.xml  # 日志配置文件
+
+
+
+
+

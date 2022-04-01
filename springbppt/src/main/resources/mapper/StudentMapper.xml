@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.springbppt.mapper.StudentMapper">
+
+    <insert id="add" parameterType="student">
+        insert into student (Sid,Sname,Sage,Ssex,url) values (
+        (select Sid from (select concat(max(cast(Sid as SIGNED ))+1 ,'') as Sid from student)student),
+        #{Sname},#{Sage},#{Ssex},#{url})
+    </insert>
+
+
+    <update id="handleEdit">
+        update student
+        <set>
+            <if test="sname != null and sname != ''">
+                Sname = #{sname},
+            </if>
+            <if test="sage != null and sage != ''">
+                Sage = #{sage},
+            </if>
+            <if test="ssex != null and ssex != ''">
+                Ssex = #{ssex},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url}
+            </if>
+        </set>
+        where Sid = #{sid} or Sname = #{sname}
+    </update>
+
+
+    <delete id="deleteid" parameterType="string">
+        delete from student where Sid = #{sid}
+    </delete>
+
+
+    <select id="selectPage" resultType="com.itheima.springbppt.bean.Student" parameterType="string">
+        select * from student
+        <where>
+            <if test="queryString != null and queryString != ''">
+                Sname = #{queryString}
+            </if>
+        </where>
+        <!--  limit #{currentPage},#{pageSize}   -->
+    </select>
+
+
+    <select id="selectid" resultType="com.itheima.springbppt.bean.Student" parameterType="string">
+        select * from student where Sid = #{sid}
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        select COUNT(1)as value from student where Sname = #{sname}
+    </select>
+
+</mapper>
