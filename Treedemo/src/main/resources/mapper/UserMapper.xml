@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hh.demo.mapper.UserMapper">
+
+   <!-- 以下是关键的知识点：
+    column 代表会拿父节点 dept_id ，作为参数获取 next 对象
+    treeNode 对象是个列表，其实可以省略不写
+    ofType 用来区分 JavaBean 属性类型和集合包含的类型
+    select 是用来执行循环哪个 SQL
+    -->
+
+    <resultMap id="BaseTreeResultMap" type="com.hh.demo.TreeBean.DeptEmtity">
+        <result column="dept_id" property="deptId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="order_num" property="orderNum"/>
+        <collection column="dept_id" property="treeNode" javaType="java.util.ArrayList"
+                    ofType="com.hh.demo.TreeBean.DeptEmtity" select="getNextNodeTree"/>
+    </resultMap>
+
+    <resultMap id="NextTreeResultMap" type="com.hh.demo.TreeBean.DeptEmtity">
+        <result column="dept_id" property="deptId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="order_num" property="orderNum"/>
+        <collection column="dept_id" property="treeNode" javaType="java.util.ArrayList"
+                    ofType="com.hh.demo.TreeBean.DeptEmtity" select="getNextNodeTree"/>
+    </resultMap>
+
+    <!--    parent_id = 0 代表顶级节点。然后通过 collection 节点继续调用 getNextNodeTree 方法进行循环调用。-->
+
+    <select id="getNextNodeTree" resultMap="NextTreeResultMap">
+        SELECT * FROM sys_dept WHERE parent_id = #{deptId}
+    </select>
+
+    <select id="getNodeTree" resultMap="BaseTreeResultMap">
+        SELECT * FROM sys_dept WHERE parent_id = 0
+    </select>
+
+</mapper>
+

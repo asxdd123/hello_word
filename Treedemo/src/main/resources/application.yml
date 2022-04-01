@@ -1,0 +1,13 @@
+server:
+  port: 7000
+spring:
+  thymeleaf:
+    suffix: .html
+  datasource:
+    password: itheima
+    username: root
+    url: jdbc:mysql://localhost:3306/aaa3?useUnicode=true&useJDBCCompliantTimezoneShift=true&serverTimezone=UTC&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: com.hh.demo.test
+  mapper-locations: classpath:mapper/*.xml
