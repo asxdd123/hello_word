@@ -86,6 +86,7 @@ public class CheckgroupController {
 
     /**
      * 编辑
+     *
      * @param group
      * @param checkitemIds
      * @return
@@ -102,6 +103,7 @@ public class CheckgroupController {
 
     /**
      * 删除
+     *
      * @param id
      * @return
      */
@@ -116,4 +118,19 @@ public class CheckgroupController {
         return new Result(true, MessageConstant.DELETE_CHECKGROUP_SUCCESS);
     }
 
+    /**
+     * 查所有
+     *
+     * @return
+     */
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    public Result findAll() {
+        try {
+            List<CheckGroup> list = service.findAll();
+            return new Result(true, MessageConstant.QUERY_CHECKGROUP_SUCCESS,list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Result(false, MessageConstant.QUERY_CHECKGROUP_FAIL);
+    }
 }
