@@ -24,4 +24,7 @@ public interface CheckgroupService {
 
     // 删除
     void delete(Integer id);
+
+    List<CheckGroup> findAll();
+
 }

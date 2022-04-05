@@ -17,9 +17,9 @@ import java.io.InputStream;
  * 七牛云工具类
  */
 public class QiniuUtils {
-    public  static String accessKey = "dulF9Wze9bxujtuRvu3yyYb9JX1Sp23jzd3tO708";
-    public  static String secretKey = "vZkhW7iot3uWwcWz9vXfbaP4JepdWADFDHVLMZOe";
-    public  static String bucket = "itcast_health_111";
+    public  static String accessKey = "Z06AQs4x1SBdrvnkDkpEYvsF3v15fBv4uNgDVmu7";    //AccessKey秘钥
+    public  static String secretKey = "Ns8Ofzbiy9lGzS6kS3ud5o7FAYXaEncPxt45RKdq";    // SecretKey秘钥
+    public  static String bucket = "asasas10";  //仓库名
 
     public static void upload2Qiniu(String filePath,String fileName){
         //构造一个带指定Zone对象的配置类
@@ -41,7 +41,11 @@ public class QiniuUtils {
         }
     }
 
-    //上传文件
+    /**
+     * 上传文件
+     * @param bytes
+     * @param fileName
+     */
     public static void upload2Qiniu(byte[] bytes, String fileName){
         //构造一个带指定Zone对象的配置类
         Configuration cfg = new Configuration(Zone.zone0());
@@ -69,7 +73,10 @@ public class QiniuUtils {
         }
     }
 
-    //删除文件
+    /**
+     * 删除文件
+     * @param fileName
+     */
     public static void deleteFileFromQiniu(String fileName){
         //构造一个带指定Zone对象的配置类
         Configuration cfg = new Configuration(Zone.zone0());

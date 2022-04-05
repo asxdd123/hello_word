@@ -31,4 +31,7 @@ public interface CheckgroupDao {
 
     // 删除
     void delete(Integer id);
+
+    List<CheckGroup> findAll();
+
 }

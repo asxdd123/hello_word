@@ -12,21 +12,25 @@ import com.qiniu.util.Auth;
 import org.junit.Test;
 
 public class QiniuTest {
-    //使用七牛云提供的sdk实现文件上传
-    //@Test
-    public void test1(){
+
+    /**
+     * 使用七牛云提供的sdk实现文件上传
+     */
+    @Test
+    public void test1() {
         System.out.println("执行单元测试....");
-//构造一个带指定Zone对象的配置类
-        Configuration cfg = new Configuration(Zone.zone0());
-//...其他参数参考类注释
+        //构造一个带指定Zone对象的配置类
+        Configuration cfg = new Configuration(Zone.zone0());   //Zone.zone0()代表的是华东区域
+        //...其他参数参考类注释
         UploadManager uploadManager = new UploadManager(cfg);
-//...生成上传凭证，然后准备上传
-        String accessKey = "dulF9Wze9bxujtuRvu3yyYb9JX1Sp23jzd3tO708";
-        String secretKey = "vZkhW7iot3uWwcWz9vXfbaP4JepdWADFDHVLMZOe";
-        String bucket = "itcast_health_111";
-//如果是Windows情况下，格式是 D:\\qiniu\\test.png
-        String localFilePath = "C:\\Users\\zhaoqx\\Desktop\\传智健康项目_广州111\\第4章\\资源\\图片资源\\03a36073-a140-4942-9b9b-712cecb144901.jpg";
-//默认不指定key的情况下，以文件内容的hash值作为文件名
+        //...生成上传凭证，然后准备上传
+        String accessKey = "Z06AQs4x1SBdrvnkDkpEYvsF3v15fBv4uNgDVmu7"; // AccessKey秘钥
+        String secretKey = "Ns8Ofzbiy9lGzS6kS3ud5o7FAYXaEncPxt45RKdq"; // SecretKey秘钥
+        String bucket = "asasas10";     //仓库名
+
+        //如果是Windows情况下，格式是 D:\\qiniu\\test.png
+        String localFilePath = "D:\\学习资料\\java学习笔记\\JavaEE学习资料\\传智健康2.0\\day04\\资源\\图片资源\\aaa.jpg";
+        //默认不指定key的情况下，以文件内容的hash值作为文件名
         String key = "abc.jpg";
         Auth auth = Auth.create(accessKey, secretKey);
         String upToken = auth.uploadToken(bucket);
@@ -47,16 +51,18 @@ public class QiniuTest {
         }
     }
 
-    //使用七牛云提供的sdk删除服务器上的图片
-    //@Test
-    public void test2(){
+    /**
+     * 使用七牛云提供的sdk删除服务器上的图片
+     */
+    @Test
+    public void test2() {
         //构造一个带指定Zone对象的配置类
         Configuration cfg = new Configuration(Zone.zone0());
-//...其他参数参考类注释
+        //...其他参数参考类注释
 
-        String accessKey = "dulF9Wze9bxujtuRvu3yyYb9JX1Sp23jzd3tO708";
-        String secretKey = "vZkhW7iot3uWwcWz9vXfbaP4JepdWADFDHVLMZOe";
-        String bucket = "itcast_health_111";
+        String accessKey = "Z06AQs4x1SBdrvnkDkpEYvsF3v15fBv4uNgDVmu7";
+        String secretKey = "Ns8Ofzbiy9lGzS6kS3ud5o7FAYXaEncPxt45RKdq";
+        String bucket = "asasas10";
         String key = "abc.jpg";
 
         Auth auth = Auth.create(accessKey, secretKey);
