@@ -1,5 +1,6 @@
 package com.hehe.demo3;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -355,6 +356,28 @@ public class TestB {
          * UPDATE student SET Sname=?, Ssex=? WHERE Sid=?
          */
         boolean b = service.updateById(stu);
+        System.out.println(b);
+    }
+
+    @Test
+    public void methods22222() {
+        String age = "2022-01-05";
+        //创建修改条件构造器
+        UpdateWrapper<Student> wrapper = new UpdateWrapper<>();
+        //查询条件
+        wrapper.eq("Sname","111");
+
+        Student stu = new Student();
+        stu.setSid("44");
+        stu.setSname("111");
+        stu.setSage(age);
+        stu.setSsex("男");
+        /**
+         * 1. 会先执行条件构造器                         UPDATE student SET Sname=?, Sage=?, Ssex=? WHERE (Sname = ?)
+         * 2. 如果条件构造器获取不到, 会先查该数据是否存在   SELECT Sid,Sname,Sage,Ssex FROM student WHERE Sid=?
+         * 3. 如果不存在就执行插入                        INSERT INTO student ( Sid, Sname, Sage, Ssex ) VALUES ( ?, ?, ?, ? )
+         */
+        boolean b = service.saveOrUpdate(stu,wrapper);
         System.out.println(b);
     }
 
