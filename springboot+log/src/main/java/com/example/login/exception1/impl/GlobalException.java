@@ -1,5 +1,6 @@
-package com.example.login.exception;
+package com.example.login.exception1.impl;
 
+import com.example.login.exception1.NoFoundExcepiton;
 import com.example.login.utils.ResponseResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @CrossOrigin
 @RestControllerAdvice
-public class GlobalExceptionHandler {
-    private static Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+public class GlobalException {
+    private static Logger LOGGER = LoggerFactory.getLogger(GlobalException.class);
 
     @ExceptionHandler
     public ResponseResult processException(Exception ex, HttpServletRequest request, HttpServletResponse response){
