@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    password: itheima
+    username: root
+    url: jdbc:mysql://localhost:3306/aaa3?serverTimezone=GMT%2B8&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  type-aliases-package: com.helllo.demo.pojo
+mybatis-plus:
+  type-aliases-package: com.helllo.demo.pojo
+
+
+
+
