@@ -11,6 +11,7 @@ mybatis:
   type-aliases-package: com.helllo.demo.pojo
 mybatis-plus:
   type-aliases-package: com.helllo.demo.pojo
+  mapper-locations: classpath:mapper/*Mapper.xml
 
 
 
