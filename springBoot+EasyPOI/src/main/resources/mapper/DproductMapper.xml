@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.helllo.demo.mapper.DproductMapper">
+    <resultMap id="BaseResultMap" type="com.helllo.demo.pojo.Dproduct">
+        <id column="id" property="id"/>
+        <result column="product_name" property="productName"/>
+        <result column="product_category" property="productCategory"/>
+        <result column="product_status" property="productStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="product_introduction" property="productIntroduction"/>
+
+        <collection property="children" ofType="com.helllo.demo.pojo.DImg">
+            <id column="imgid" property="id"/>
+            <result column="img" property="img"/>
+            <result column="createtime" property="createtime"/>
+        </collection>
+    </resultMap>
+
+    <select id="productSelect" resultMap="BaseResultMap">
+       select
+            d.id id,
+            d.product_name ,
+            d.product_category ,
+            d.product_status ,
+            d.create_time ,
+            d.product_introduction ,
+            img.id as imgid ,
+            img.img,
+            img.create_time createtime
+        from
+            d_product d
+         left join
+            d_img img
+	    on
+            img.product_id = d.id
+    </select>
+</mapper>
