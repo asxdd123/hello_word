@@ -16,7 +16,7 @@ import java.util.Date;
 @ExcelTarget("Student")
 public class Student  {
 
-    @Excel(name = "id")
+//    @Excel(name = "id")
     @TableId("Sid")
     private String sid;
 
