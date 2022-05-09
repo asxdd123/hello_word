@@ -55,8 +55,8 @@ public class Demo3Controller {
                 return new Result(true, ResultCode.QUERY__SUCCESS, map);
             } catch (Exception e) {
                 e.printStackTrace();
+                return new Result(false, ResultCode.QUERY__FAIL);
             }
-            return new Result(false, ResultCode.QUERY__FAIL);
         } else {
             return new Result(false, ResultCode.message);
         }
@@ -124,13 +124,13 @@ public class Demo3Controller {
                 if (num == 1) {
                     return new Result(true, ResultCode.EDIT__SUCCESS);
                 } else {
-                    return new Result(true, ResultCode.EDIT__FAIL);
+                    return new Result(false, ResultCode.EDIT__FAIL);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new Result(true, ResultCode.message);
+        return new Result(false, ResultCode.message);
     }
 
 
@@ -149,13 +149,13 @@ public class Demo3Controller {
                 if (num == 1) {
                     return new Result(true, ResultCode.DELETE__SUCCESS);
                 } else {
-                    return new Result(true, ResultCode.DELETE__FAIL);
+                    return new Result(false, ResultCode.DELETE__FAIL);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new Result(true, ResultCode.message);
+        return new Result(false, ResultCode.message);
     }
 
 
