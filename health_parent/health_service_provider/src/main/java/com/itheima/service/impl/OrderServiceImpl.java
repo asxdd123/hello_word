@@ -81,11 +81,8 @@ public class OrderServiceImpl implements OrderService{
         }
 
         //保存预约信息
-        Order order = new Order(member.getId(),
-                date,
-                (String)map.get("orderType"),
-                Order.ORDERSTATUS_NO,
-                Integer.parseInt((String) map.get("setmealId")));
+        Order order = new Order(member.getId(), date, (String)map.get("orderType"),
+                              Order.ORDERSTATUS_NO, Integer.parseInt((String) map.get("setmealId")));
         orderDao.add(order);
 
         //更新已预约人数
