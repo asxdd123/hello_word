@@ -110,6 +110,20 @@ public class SetmealServiceImpl implements SetmealService {
     }
 
     /**
+     * 查询所有
+     * @return
+     */
+    @Override
+    public List<Setmeal> findAll() {
+        return dao.findAll();
+    }
+
+    @Override
+    public Setmeal findByxxId(Integer id) {
+        return dao.findByxxId(id);
+    }
+
+    /**
      * 设置套餐与检查组多对多关系
      *
      * @param id

@@ -82,4 +82,30 @@
     </select>
 
 
+
+    <resultMap id="baseResultMap" type="com.itheima.pojo.CheckGroup">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="helpCode" property="helpCode"/>
+        <result column="sex" property="sex"/>
+        <result column="remark" property="remark"/>
+        <result column="attention" property="attention"/>
+    </resultMap>
+    <resultMap id="findByIdResultMap" type="com.itheima.pojo.CheckGroup">
+        <!--       当前property是检查组实体类中一对多检查项的变量名-->
+        <collection property="checkItems"
+                    ofType="com.itheima.pojo.CheckItem"
+                    javaType="ArrayList"
+                    column="id"
+                    select="com.itheima.dao.CheckItemDao.findCheckItemById">
+            <!--            当前column代表的是检查组id,当前select是拿着检查组id去findCheckItemById方法中查找对应的检查项-->
+        </collection>
+    </resultMap>
+
+    <select id="findCheckGroupById" resultMap="findByIdResultMap">
+        select * from t_checkgroup  where id in
+                (select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{id})
+</select>
+
 </mapper>

@@ -1,6 +1,6 @@
 package com.example.login.utils;
 
-import com.alibaba.fastjson.JSONObject;
+//import com.alibaba.fastjson.JSONObject;
 import com.example.login.exception2.BaseErrorInfoInterface;
 import com.example.login.exception2.CommonEnum;
 
@@ -107,9 +107,9 @@ public class ResultBody {
         return rb;
     }
 
-    @Override
-    public String toString() {
-        return JSONObject.toJSONString(this);
-    }
+//    @Override
+//    public String toString() {
+//        return JSONObject.toJSONString(this);
+//    }
 
 }
