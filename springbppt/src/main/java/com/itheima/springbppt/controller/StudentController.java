@@ -129,6 +129,18 @@ public class StudentController {
         return new Result(false, ResultCode.ADD_FAIL);
     }
 
+    @RequestMapping(value = "/selectMap", method = RequestMethod.POST)
+    @ResponseBody
+    public Result selectMap(@RequestBody Map<String,Object> param) {
+        try {
+            List<Student> list = service.selectMap(param);
+            return new Result(true, ResultCode.ADD__SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Result(false, ResultCode.ADD_FAIL);
+    }
+
     /**
      * 编辑
      *

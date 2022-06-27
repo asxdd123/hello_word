@@ -55,4 +55,16 @@
         select COUNT(1)as value from student where Sname = #{sname}
     </select>
 
+
+    <select id="selectMap" resultType="com.itheima.springbppt.bean.Student" parameterType="map">
+        select * from student
+        where 1=1
+        <if test="map.idList != null and map.idList.size() > 0">
+           and sid in
+            <foreach collection="map.idList" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
 </mapper>

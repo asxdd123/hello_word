@@ -21,5 +21,5 @@ public interface StudentService {
 
     void deleteid(String sid);
 
-    void addList(List<Student> students);
+    List<Student> selectMap(Map<String, Object> param);
 }

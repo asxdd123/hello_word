@@ -31,7 +31,7 @@ public class StudentServiceImpl implements StudentService {
         try {
             Student stu = new Student();
             String sage = student.getSage();
-            if(sage.contains("T")){
+            if (sage.contains("T")) {
                 int index = sage.indexOf("T");
                 String s = sage.substring(0, index);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
                 Date time = ins.getTime();
                 String format = dateFormat.format(time);
                 stu.setSage(format);
-            }else{
+            } else {
                 stu.setSage(student.getSage());
             }
             stu.setSname(student.getSname());
@@ -103,11 +103,12 @@ public class StudentServiceImpl implements StudentService {
         studentMapper.deleteid(sid);
     }
 
+
     @Override
-    public void addList(List<Student> students) {
-
+    public List<Student> selectMap(Map<String, Object> param) {
+        List<Student> list = studentMapper.selectMap(param);
+        return list;
     }
-
 
     /**
      * 分页查全部

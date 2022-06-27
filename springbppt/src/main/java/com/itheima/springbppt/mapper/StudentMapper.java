@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -24,4 +25,6 @@ public interface StudentMapper {
     void deleteid(String sid);
 
     int count(String sname);
+
+    List<Student> selectMap(@Param("map") Map<String, Object> param);
 }
