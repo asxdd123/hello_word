@@ -33,25 +33,31 @@ public class StudentMapper {
 
         ArrayList<Student> list = new ArrayList<>();
         try {
-            InputStream stream = StudentMapper.class.getClassLoader().getResourceAsStream("application.yml");
+            //读取配置文件
+            InputStream stream = StudentMapper.class.getClassLoader().getResourceAsStream("application.yml");  
             Properties properties = new Properties();
             properties.load(stream);
 
+            //获取参数
             String driverClass = properties.getProperty("driver-class-name");
             String url = properties.getProperty("url");
             String username = properties.getProperty("username");
             String password = properties.getProperty("password");
-
+            
+            //注册数据库类型
             Class.forName(driverClass);
+            // 获取数据库连接
             connection = DriverManager.getConnection(url, username, password);
+            //创建请求对象(执行者对象)
             statement = connection.createStatement();
             if (StringUtil.isNotEmpty(name)) {
                 sql = "select * from student where sname like '%" + name + "%'" + "limit " + (page - 1) + "," + size;
             } else {
                 sql = "select * from student " + "limit " + (page - 1) + "," + size;
             }
+            //执行sql
             resultSet = statement.executeQuery(sql);
-
+            // 循环结果进行遍历赋值
             while (resultSet.next()) {
                 Student student = new Student();
                 student.setSid(resultSet.getString("sid"));
@@ -67,6 +73,7 @@ public class StudentMapper {
             e.printStackTrace();
         } finally {
             try {
+                //关闭
                 connection.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
