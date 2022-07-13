@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heim.longindenglu.mapper.UserMapper">
+
+    <insert id="insetUser">
+        insert into user (name,password) values (#{username},#{password})
+    </insert>
+
+
+    <select id="result" resultType="com.heim.longindenglu.bean.User" parameterType="string">
+        select * from user where name = #{username}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer" parameterType="string">
+        select count(1) from user where name = #{username}
+    </select>
+</mapper>
