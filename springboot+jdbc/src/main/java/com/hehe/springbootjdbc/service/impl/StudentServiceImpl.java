@@ -1,6 +1,7 @@
 package com.hehe.springbootjdbc.service.impl;
 
 import com.hehe.springbootjdbc.mapper.StudentMapper;
+import com.hehe.springbootjdbc.mapper.StudentMapper3;
 import com.hehe.springbootjdbc.pojo.Student;
 import com.hehe.springbootjdbc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.Map;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentMapper studentMapper;
+    private StudentMapper3 studentMapper;
 
 
     @Override

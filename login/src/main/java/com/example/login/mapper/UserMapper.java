@@ -1,6 +1,7 @@
 package com.example.login.mapper;
 
 import com.example.login.bean.User;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 

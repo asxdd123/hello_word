@@ -16,7 +16,7 @@ import java.util.Properties;
  * @CreateTime: 2022-07-07 23:53
  */
 @Component
-public class StudentMapper {
+public class StudentMapper2 {
 
 //    @Autowired
 //    JdbcTemplate jdbcTemplate;     springboot中封装了JDBC ,只需要调用JdbcTemplate即可
@@ -34,7 +34,7 @@ public class StudentMapper {
         ArrayList<Student> list = new ArrayList<>();
         try {
             //读取配置文件
-            InputStream stream = StudentMapper.class.getClassLoader().getResourceAsStream("application.yml");  
+            InputStream stream = StudentMapper2.class.getClassLoader().getResourceAsStream("application.yml");
             Properties properties = new Properties();
             properties.load(stream);
 
@@ -43,7 +43,7 @@ public class StudentMapper {
             String url = properties.getProperty("url");
             String username = properties.getProperty("username");
             String password = properties.getProperty("password");
-            
+
             //注册数据库类型
             Class.forName(driverClass);
             // 获取数据库连接
@@ -92,5 +92,5 @@ public class StudentMapper {
         return list;
     }
 
-    
+
 }
