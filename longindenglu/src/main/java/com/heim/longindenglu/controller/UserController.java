@@ -54,6 +54,8 @@ public class UserController {
         } else {
             int num = userService.insetUser(username, password);
            if(num == 1){
+               request.setAttribute("username",username);
+               request.setAttribute("password",password);
                return "end1";
            }else{
                return "end2";
