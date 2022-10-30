@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * @Author: 就不告诉你
  * @CreateTime: 2022-10-30 22:31
+ * 启动完项目后访问网址   http://localhost:8000/swagger-ui.html
  */
 
 @Api(value = "学生管理相关接口", tags = "channel", description = "学生管理相关接口API")   //修饰整个类，描述Controller的作用
