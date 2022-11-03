@@ -10,6 +10,7 @@ import com.example.springswager.util.ResponseVo;
 import com.example.springswager.util.ResponseVoStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,4 +33,17 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         return studentPage.getRecords();
     }
 
+
+    /**
+     * 测试@Transactional注解事务回滚
+     * @param
+     * @return
+     */
+//    @Transactional(rollbackFor = Exception.class)
+    @Transactional
+    @Override
+    public void insertStudentAAA(Student student) {
+        int insert = studentMapper.insert(student);
+        int i = 1/0;
+    }
 }

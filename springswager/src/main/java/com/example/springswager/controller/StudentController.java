@@ -98,4 +98,22 @@ public class StudentController {
         }
     }
 
+
+    /**
+     * 测试@Transactional注解事务回滚
+     * @param
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/insertStudentAAA")
+    public ResponseVo insertStudentAAA(@RequestBody Student student) {
+        try {
+            studentService.insertStudentAAA(student);
+            return new ResponseVo(ResponseVoStatus.SUCCESS.getMessage(), ResponseVoStatus.SUCCESS.getCode(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseVo(ResponseVoStatus.ERROR.getMessage(), ResponseVoStatus.ERROR.getCode(), null);
+        }
+    }
+
 }
