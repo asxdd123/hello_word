@@ -36,6 +36,9 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
     /**
      * 测试@Transactional注解事务回滚
+     * 1.可以加在service声明接口上
+     * 2. 可以加在impl实现接口上
+     * 3.也可以加在类上
      * @param
      * @return
      */
