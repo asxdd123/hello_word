@@ -1,9 +1,10 @@
 package com.hehe.demo3.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.hehe.demo3.bean.Student;
 import com.hehe.demo3.service.StudentService;
-import com.hehe.demo3.utils.Excel.POIUtils;
 import com.hehe.demo3.utils.QueryPageBean;
 import com.hehe.demo3.utils.Result;
 import com.hehe.demo3.utils.ResultCode;
@@ -14,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -23,22 +23,58 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
 @Controller
-@RequestMapping("/hello")
+@RequestMapping("/aa")
 public class Demo3Controller {
 
     @Autowired
     private StudentService service;
 
-    @RequestMapping("/hello")
-    public String aa() {
-        return "hello";
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String loginIndex() {
+        return "login";
     }
+
+    @GetMapping("/result")
+    public String result(HttpServletRequest req, HttpServletResponse resp){
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        Student student = new Student();
+        student.setSname(username);
+
+        QueryWrapper<Student> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(Student::getSname,username);
+        Student one = service.getOne(wrapper);
+        if(ObjectUtils.isNotEmpty(one)){
+            return "hello";
+        }else{
+            return "zhuce";
+        }
+    }
+
+
+    @GetMapping("/end")
+    public String end(HttpServletRequest req, HttpServletResponse resp){
+
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+
+        Student user = new Student();
+        user.setSid("45");
+        user.setSname(username);
+        service.save(user);
+        req.getSession().setAttribute("sessionid",user);
+        req.getSession().setMaxInactiveInterval(3*60);  //以秒为单位，即在没有活动3分钟后，session将失效
+        return "login";
+    }
+
 
     /**
      * 模糊分页查询

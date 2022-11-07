@@ -99,13 +99,13 @@
         <el-dialog :visible.sync="upload">
             <el-form ref="uploadform" :model="uploadformData" label-width="80px">
                 <el-button type="primary" plain @click="download()">下载模板</el-button>
-                <!--            <form action="/hello/channel" enctype="multipart/form-data" method="post">-->
+                <!--            <form action="/aa/channel" enctype="multipart/form-data" method="post">-->
                 <!--                <input type="file" name="file">-->
                 <!--                <input type="submit" value="导入"/>-->
                 <!--            </form>-->
                 <el-upload
                         name="excelFile"
-                        action="/hello/channel"
+                        action="/aa/channel"
                         :on-success="handleSuccess"
                         :before-upload="beforeUpload"
                         :show-file-list="false"
@@ -114,7 +114,7 @@
                 </el-upload>
                 <el-upload
                         name="pdfFile"
-                        action="/hello/uploadPDF"
+                        action="/aa/uploadPDF"
                         :on-success="handleSuccess"
                         :before-upload="beforeUploadPDF"
                         :show-file-list="false"
@@ -147,7 +147,7 @@
                         :before-upload="beforeAvatarUpload"
                         accept=".jpg,.png"
                         drag
-                        action="/hello/uploadPicture"
+                        action="/aa/uploadPicture"
                         multiple>
                     <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 </el-upload>
@@ -206,7 +206,7 @@
             },
             //下载模板
             download() {
-                window.location.href = "/hello/downloadExcel";
+                window.location.href = "/aa/downloadExcel";
             },
             //图片上传前进行校验
             beforeAvatarUpload(file) {
@@ -270,8 +270,8 @@
             },
             //导出
             derivePage() {
-                // window.location.href = "/hello/derivePage";     //代码生成Excel导出
-                window.location.href = "/hello/deriveExcel";    //基于Excel模板导出
+                // window.location.href = "/aa/derivePage";     //代码生成Excel导出
+                window.location.href = "/aa/deriveExcel";    //基于Excel模板导出
             },
             //重置页面
             resetPage() {
@@ -285,7 +285,7 @@
                 this.$refs['form'].validate((valid) => {
                     if (valid) {
                         console.log(this.formData);
-                        axios.post("/hello/add", this.formData).then((res) => {
+                        axios.post("/aa/add", this.formData).then((res) => {
                             this.dialogFormVisible = false;
                             if (res.data.flag) {
                                 this.selectPage();
@@ -326,7 +326,7 @@
                     pageSize: this.pageSize,
                     queryString: this.queryString
                 };
-                axios.post("/hello/selectPage", param).then((res) => {
+                axios.post("/aa/selectPage", param).then((res) => {
                     this.total = res.data.data.total;
                     this.tableData = res.data.data.data;
                 })
@@ -340,7 +340,7 @@
             updateStudent(row) {
                 console.log(row);
                 this.dialogFormVisible4Edit = true;
-                axios.post("/hello/selectid?sid=" + row.sid).then((res) => {
+                axios.post("/aa/selectid?sid=" + row.sid).then((res) => {
                     if (res.data.flag) {
                         this.formData = res.data.data;
                     } else {
@@ -352,7 +352,7 @@
             deleteStudent(row) {
                 console.log(row);
                 this.$confirm("确认删除当前选中记录吗？", "提示", {type: 'warning'}).then(() => {
-                    axios.post("/hello/deleteid?sid=" + row.sid).then((res) => {
+                    axios.post("/aa/deleteid?sid=" + row.sid).then((res) => {
                         if (res.data.flag) {
                             this.$message({
                                 message: res.data.message,
@@ -376,7 +376,7 @@
                     if (valid) {
                         console.log(this.formData);
                         this.dialogFormVisible4Edit = false;
-                        axios.post("/hello/handleEdit", this.formData).then((res) => {
+                        axios.post("/aa/handleEdit", this.formData).then((res) => {
                             if (res.data.flag) {
                                 this.selectPage();
                                 this.$message({
