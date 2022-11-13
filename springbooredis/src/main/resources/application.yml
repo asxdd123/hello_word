@@ -1,2 +1,5 @@
 server:
   port: 8000
+
+#spirngboot整合Redis默认连接本地Redis,可以不配置,
+#  如果是Linux或者不是本地的Redis需要进行配置
