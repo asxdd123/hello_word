@@ -34,7 +34,6 @@ public class Demo3Controller {
     @Autowired
     private StudentService service;
 
-
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String loginIndex() {
         return "login";

@@ -1,6 +1,5 @@
 package com.hehe.springbooredis.controller;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -55,7 +54,7 @@ public class StringController {
      * redisTemplate操作String类型常用方法
      */
     @RequestMapping(value = "/string", method = RequestMethod.GET)
-    public void Test() throws InterruptedException {
+    public void Test(){
 
 
         //key不存在，设值
