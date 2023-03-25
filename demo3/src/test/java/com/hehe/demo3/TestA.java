@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hehe.demo3.bean.Student;
 import com.hehe.demo3.mapper.StudentMapper;
+import com.hehe.demo3.utils.DateUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class TestA {
         String age = "2022-01-05";
 //        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        Date date = format.parse(age);
-        student.setSage(age);
+        student.setSage(DateUtils.parseDate(age));
         student.setSsex("男");
         /**
          * INSERT INTO student ( Sid, Sname, Sage, Ssex ) VALUES ( ?, ?, ?, ? )

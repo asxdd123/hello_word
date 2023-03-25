@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.hehe.demo3.bean.Student;
 import com.hehe.demo3.service.StudentService;
+import com.hehe.demo3.utils.DateUtils;
+import com.hehe.demo3.utils.Excel.POIUtils;
 import com.hehe.demo3.utils.QueryPageBean;
 import com.hehe.demo3.utils.Result;
 import com.hehe.demo3.utils.ResultCode;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -231,33 +235,33 @@ public class Demo3Controller {
      * @return
      * @throws IOException
      */
-//    @RequestMapping(value = "/channel", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Result downloadExcel(@RequestParam("excelFile") MultipartFile excelFile) throws IOException {
-//        String filename = excelFile.getOriginalFilename();
-//
-//        if (filename != null){
-//            List<String[]> strings = POIUtils.readExcel(excelFile);
-//            ArrayList<Student> list = new ArrayList<>();
-//            for (String[] string : strings) {
-//                Student stu = new Student();
-//                stu.setSid(string[0]);
-//                stu.setSname(string[1]);
-//                stu.setSage(string[2]);
-//                stu.setSsex(string[3]);
-//                list.add(stu);
-//            }
-//            if(list != null && list.size() > 0){
-//                boolean result = service.saveBatch(list);
-//                if(result == true){
-//                    return new Result(true,ResultCode.DERIVE__SUCCESS);
-//                }else{
-//                    return new Result(false,ResultCode.DERIVE__FAIL);
-//                }
-//            }
-//        }
-//        return new Result(false, ResultCode.DERIVE__FAIL);
-//    }
+    @RequestMapping(value = "/channel", method = RequestMethod.POST)
+    @ResponseBody
+    public Result downloadExcel(@RequestParam("excelFile") MultipartFile excelFile) throws IOException {
+        String filename = excelFile.getOriginalFilename();
+
+        if (filename != null){
+            List<String[]> strings = POIUtils.readExcel(excelFile);
+            ArrayList<Student> list = new ArrayList<>();
+            for (String[] string : strings) {
+                Student stu = new Student();
+                stu.setSid(string[0]);
+                stu.setSname(string[1]);
+                stu.setSage(DateUtils.parseDate(string[2]));
+                stu.setSsex(string[3]);
+                list.add(stu);
+            }
+            if(list != null && list.size() > 0){
+                boolean result = service.saveBatch(list);
+                if(result == true){
+                    return new Result(true,ResultCode.DERIVE__SUCCESS);
+                }else{
+                    return new Result(false,ResultCode.DERIVE__FAIL);
+                }
+            }
+        }
+        return new Result(false, ResultCode.DERIVE__FAIL);
+    }
 
     /**
      * 代码生成Excel文件导出

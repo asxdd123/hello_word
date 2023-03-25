@@ -10,11 +10,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hehe.demo3.bean.Student;
 import com.hehe.demo3.mapper.StudentMapper;
 import com.hehe.demo3.service.StudentService;
+import com.hehe.demo3.utils.DateUtils;
 import com.hehe.demo3.utils.QueryPageBean;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,10 +71,12 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
      */
     @Override
     public int add(Student student) {
-        String sage = student.getSage();
-        if(sage.contains("T")){
-            String t = sage.substring(0, sage.indexOf("T"));
-            student.setSage(t);
+        Date sage = student.getSage();
+        String date = DateUtils.formatDate(sage);
+        if(date.contains("T")){
+            String t = date.substring(0, date.indexOf("T"));
+            Date parseDate = DateUtils.parseDate(t);
+            student.setSage(parseDate);
         }else{
             student.setSage(sage);
         }

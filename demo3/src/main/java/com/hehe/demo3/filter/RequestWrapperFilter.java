@@ -19,7 +19,7 @@ import java.util.Map;
  */
 //过滤器获取参数
 @Slf4j
-@WebFilter(filterName = "RequestWrapperFilter", urlPatterns = "/*")
+//@WebFilter(filterName = "RequestWrapperFilter", urlPatterns = "/*")
 public class RequestWrapperFilter implements Filter {
 
     @Override

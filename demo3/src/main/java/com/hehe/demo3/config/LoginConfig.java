@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Author: 就不告诉你
  * @CreateTime: 2022-11-07 11:15
  */
-@Configuration
+//@Configuration
 public class LoginConfig implements WebMvcConfigurer {
 
     /**
