@@ -1,0 +1,30 @@
+server:
+  port: 8000
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://8.142.43.169:5432/postgres?currentSchema=tf_overhaul
+    username: postgres
+    password: Gwfd123Abc123#@!
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+  type-aliases-package: com.hehe.entity
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.hehe.entity
+
+fdfs:
+  connect-timeout: 600
+  so-timeout: 1500
+  tracker-list: 192.168.23.129:22122
+  web-server-url: http://192.168.23.129/
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+
