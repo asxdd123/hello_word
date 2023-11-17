@@ -28,13 +28,12 @@ public class TreeController {
      */
     @RequestMapping("/qq")
     public long methods4(long n) {
-        if (n >= 1) {
-            //递归方法特点一：在方法中调用自己
-            return n * methods4(n - 1);
-        } else {
-            //递归方法特点二：有至少一个出口条件
-            return 1;
+        if (n == 1) {
+            //递归方法特点一：有至少一个出口条件
+            return 1; 
         }
+        //递归方法特点二：在方法中调用自己
+            return n * methods4(n - 1);
     }
 
 
